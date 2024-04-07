@@ -18,11 +18,11 @@ private FrameCadastroCarro frameCarro;
      * Creates new form MenuPrincipal
      */
     public FrameMenuPrincipal(FramePrincipal framePrincipal) {
-        this.framePrincipal = framePrincipal;
         initComponents();
         setLocationRelativeTo(null);
-        frameCliente = new FrameCadastroCliente();
-        frameCarro = new FrameCadastroCarro();
+        this.framePrincipal = framePrincipal;
+        frameCliente = new FrameCadastroCliente(this, framePrincipal);
+        frameCarro = new FrameCadastroCarro(this, framePrincipal);
     }
     
         public void abrirFrameCadastroCliente() {
@@ -47,11 +47,13 @@ private FrameCadastroCarro frameCarro;
         btCadastroCarro = new javax.swing.JButton();
         lbSubTitulo = new javax.swing.JLabel();
         btSair = new javax.swing.JButton();
+        btServicosRealizados = new javax.swing.JButton();
+        btOrdemDeServiços = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         lbTitulo.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        lbTitulo.setText("Bem Vindo a OficinaFrank Castle");
+        lbTitulo.setText("Bem Vindo a Oficina Frank Castle");
 
         btCadastroCliente.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         btCadastroCliente.setText("Cadastro Cliente");
@@ -80,6 +82,12 @@ private FrameCadastroCarro frameCarro;
             }
         });
 
+        btServicosRealizados.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        btServicosRealizados.setText("Serviços Realizados");
+
+        btOrdemDeServiços.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        btOrdemDeServiços.setText("Ordem De Serviços");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -87,7 +95,7 @@ private FrameCadastroCarro frameCarro;
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 17, Short.MAX_VALUE)
+                        .addGap(0, 10, Short.MAX_VALUE)
                         .addComponent(lbTitulo))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(60, 60, 60)
@@ -97,9 +105,11 @@ private FrameCadastroCarro frameCarro;
             .addGroup(layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btCadastroCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)
+                    .addComponent(btCadastroCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btCadastroCarro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btSair, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btSair, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btServicosRealizados, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btOrdemDeServiços, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -109,13 +119,17 @@ private FrameCadastroCarro frameCarro;
                 .addComponent(lbTitulo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lbSubTitulo)
-                .addGap(49, 49, 49)
+                .addGap(12, 12, 12)
                 .addComponent(btCadastroCliente)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btCadastroCarro)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btServicosRealizados)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btOrdemDeServiços)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btSair)
-                .addContainerGap(69, Short.MAX_VALUE))
+                .addGap(67, 67, 67))
         );
 
         pack();
@@ -140,7 +154,9 @@ private FrameCadastroCarro frameCarro;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btCadastroCarro;
     private javax.swing.JButton btCadastroCliente;
+    private javax.swing.JButton btOrdemDeServiços;
     private javax.swing.JButton btSair;
+    private javax.swing.JButton btServicosRealizados;
     private javax.swing.JLabel lbSubTitulo;
     private javax.swing.JLabel lbTitulo;
     // End of variables declaration//GEN-END:variables
