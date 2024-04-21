@@ -129,6 +129,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Servi&#xe7;os Realizados"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btServicosRealizadosActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btOrdemDeServi&#xe7;os">
       <Properties>
@@ -137,6 +140,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Ordem De Servi&#xe7;os"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btOrdemDeServi&#xe7;osActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

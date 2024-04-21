@@ -4,8 +4,9 @@
  */
 package com.mycompany.trabalho1;
 
-import java.util.ArrayList;
+
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -15,11 +16,28 @@ public class FrameCadastroCarro extends javax.swing.JFrame {
     private FrameMenuPrincipal frameMenu;
     private FramePrincipal framePrincipal;
     
+    private DefaultTableModel modelo = new DefaultTableModel();
+    private int linhaSelecionada = -1;
+    
     public FrameCadastroCarro(FrameMenuPrincipal frameMenu, FramePrincipal framePrincipal) {
         initComponents();     
         setLocationRelativeTo(null);
         this.frameMenu = frameMenu;
         this.framePrincipal = framePrincipal;
+    }
+    
+        public void carregaTabela(){
+        modelo.addColumn("Modelo");
+         modelo.addColumn("Marca");
+        modelo.addColumn("Ano");
+        modelo.addColumn("Placa");
+        modelo.addColumn("Problema relatados");
+        tbCarro.setModel(modelo);
+        tbCarro.getColumnModel().getColumn(0).setPreferredWidth(120);
+        tbCarro.getColumnModel().getColumn(1).setPreferredWidth(12);
+        tbCarro.getColumnModel().getColumn(2).setPreferredWidth(120);
+        tbCarro.getColumnModel().getColumn(3).setPreferredWidth(13);
+        tbCarro.getColumnModel().getColumn(4).setPreferredWidth(120);
     }
     public void abrirFrameMenuPrincipal() {
         frameMenu.setVisible(true);
@@ -30,25 +48,34 @@ public class FrameCadastroCarro extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
         lbTitulo = new javax.swing.JLabel();
+        lbSubTitulo = new javax.swing.JLabel();
         lbModelo = new javax.swing.JLabel();
         tfModelo = new javax.swing.JTextField();
         lbMarca = new javax.swing.JLabel();
-        lbAno = new javax.swing.JLabel();
-        lbPlaca = new javax.swing.JLabel();
         tfMarca = new javax.swing.JTextField();
-        tfAno = new javax.swing.JTextField();
+        lbPlaca = new javax.swing.JLabel();
         tfPlaca = new javax.swing.JTextField();
+        tfAno = new javax.swing.JTextField();
+        lbAno = new javax.swing.JLabel();
         lbProblems = new javax.swing.JLabel();
         tfProblema = new javax.swing.JTextField();
         btSalvar = new javax.swing.JButton();
         btSair = new javax.swing.JButton();
-        lbSubTitulo = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tbCarro = new javax.swing.JTable();
+        btEditar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         lbTitulo.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         lbTitulo.setText("Cadastro Carro");
+
+        lbSubTitulo.setFont(new java.awt.Font("Dialog", 1, 10)); // NOI18N
+        lbSubTitulo.setForeground(new java.awt.Color(102, 0, 0));
+        lbSubTitulo.setText("Todos os campos são obrigatorio o preenchimento");
 
         lbModelo.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         lbModelo.setText("Modelo");
@@ -62,15 +89,18 @@ public class FrameCadastroCarro extends javax.swing.JFrame {
         lbMarca.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         lbMarca.setText("Marca");
 
-        lbAno.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
-        lbAno.setText("Ano");
+        tfMarca.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfMarcaActionPerformed(evt);
+            }
+        });
 
         lbPlaca.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         lbPlaca.setText("Placa");
 
-        tfMarca.addActionListener(new java.awt.event.ActionListener() {
+        tfPlaca.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfMarcaActionPerformed(evt);
+                tfPlacaActionPerformed(evt);
             }
         });
 
@@ -80,11 +110,8 @@ public class FrameCadastroCarro extends javax.swing.JFrame {
             }
         });
 
-        tfPlaca.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfPlacaActionPerformed(evt);
-            }
-        });
+        lbAno.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        lbAno.setText("Ano");
 
         lbProblems.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         lbProblems.setText("Problema apresentado no carro : ");
@@ -109,86 +136,153 @@ public class FrameCadastroCarro extends javax.swing.JFrame {
             }
         });
 
-        lbSubTitulo.setFont(new java.awt.Font("Dialog", 1, 10)); // NOI18N
-        lbSubTitulo.setForeground(new java.awt.Color(102, 0, 0));
-        lbSubTitulo.setText("Todos os campos são obrigatorio o preenchimento");
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(tfProblema, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addContainerGap()
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(btSalvar)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(btSair))
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(tfModelo, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(lbModelo))
+                                            .addGap(66, 66, 66))
+                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                .addComponent(lbAno, javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(tfAno, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                                    .addGap(31, 31, 31)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(lbPlaca)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(tfMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(tfPlaca, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(lbMarca))))))
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGap(151, 151, 151)
+                            .addComponent(lbTitulo))
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addContainerGap()
+                            .addComponent(lbProblems))))
+                .addContainerGap(76, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(lbSubTitulo)
+                .addGap(25, 25, 25))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(lbTitulo)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lbSubTitulo)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbModelo)
+                    .addComponent(lbMarca))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(tfModelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(8, 8, 8))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(tfMarca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(tfAno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(12, 12, 12))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lbPlaca)
+                            .addComponent(lbAno))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(tfPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)))
+                .addComponent(lbProblems)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tfProblema, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btSalvar)
+                    .addComponent(btSair))
+                .addGap(0, 22, Short.MAX_VALUE))
+        );
+
+        tbCarro.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        tbCarro.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "Modelo", "Marca", "Ano", "Placa", "Problema apresentado"
+            }
+        ));
+        jScrollPane1.setViewportView(tbCarro);
+
+        btEditar.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        btEditar.setText("Editar");
+        btEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btEditarActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btEditar)))
+                .addContainerGap())
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+                .addComponent(btEditar))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGap(40, 40, 40)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lbProblems)
-                            .addComponent(tfProblema)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGap(15, 15, 15)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(24, 24, 24)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lbAno)
-                                    .addComponent(tfAno, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(lbModelo)
-                                .addComponent(tfModelo, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lbPlaca)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(tfMarca, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(tfPlaca, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(lbMarca))))
-                .addGap(51, 51, 51))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lbSubTitulo)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addComponent(btSalvar)
-                            .addGap(18, 18, 18)
-                            .addComponent(btSair)
-                            .addGap(47, 47, 47))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addComponent(lbTitulo)
-                            .addGap(130, 130, 130)))))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lbTitulo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lbSubTitulo)
-                .addGap(5, 5, 5)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbModelo)
-                    .addComponent(lbMarca))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(tfModelo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tfMarca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbAno)
-                    .addComponent(lbPlaca))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tfAno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tfPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(lbProblems)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tfProblema, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btSalvar)
-                    .addComponent(btSair))
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
@@ -215,7 +309,7 @@ public class FrameCadastroCarro extends javax.swing.JFrame {
     }//GEN-LAST:event_tfProblemaActionPerformed
 
     private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
-    ArrayList<String> listaCarros = new ArrayList<>();
+
     String modeloCarro = tfModelo.getText();
     String marcaCarro = tfMarca.getText();
     String anoCarro = tfAno.getText();
@@ -223,13 +317,20 @@ public class FrameCadastroCarro extends javax.swing.JFrame {
     String problemaCarro = tfProblema.getText();
   
     if (!modeloCarro.isEmpty() && !marcaCarro.isEmpty() && !anoCarro.isEmpty() && !placaCarro.isEmpty() && !problemaCarro.isEmpty()) {
-        listaCarros.add(modeloCarro);
-        listaCarros.add(marcaCarro);
-        listaCarros.add(anoCarro);
-        listaCarros.add(placaCarro);
-        listaCarros.add(problemaCarro);
-     
-        abrirFrameMenuPrincipal();
+    if (linhaSelecionada >= 0) {
+        modelo.removeRow(linhaSelecionada);
+        modelo.insertRow(linhaSelecionada, new Object[]{modeloCarro,marcaCarro,anoCarro,placaCarro,problemaCarro});
+    } else {
+        modelo.addRow(new Object[]{modeloCarro,marcaCarro,anoCarro,placaCarro,problemaCarro});
+    }
+
+    JOptionPane.showMessageDialog(this, "Cliente cadastrado com sucesso!");
+    tfModelo.setText("");
+    tfMarca.setText("");
+    tfAno.setText("");
+    tfPlaca.setText("");
+    tfProblema.setText("");
+    linhaSelecionada = -1;
     } else {
         JOptionPane.showMessageDialog(this, "Todos os campos devem ser preenchidos", "Erro de Digitação", JOptionPane.ERROR_MESSAGE);
     }
@@ -241,11 +342,36 @@ public class FrameCadastroCarro extends javax.swing.JFrame {
        abrirFrameMenuPrincipal();
     }//GEN-LAST:event_btSairActionPerformed
 
+    private void btEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEditarActionPerformed
+         linhaSelecionada = -1;
+       linhaSelecionada = tbCarro.getSelectedRow();
+       if(linhaSelecionada >=0){
+    modelo.removeRow(linhaSelecionada);
+           String modelo = (String)tbCarro.getValueAt(linhaSelecionada, 0);
+           String marca = (String)tbCarro.getValueAt(linhaSelecionada, 1);
+           String ano = (String)tbCarro.getValueAt(linhaSelecionada, 2);
+           String placa = (String)tbCarro.getValueAt(linhaSelecionada, 3);
+           String problema = (String)tbCarro.getValueAt(linhaSelecionada, 4);
+          
+           tfModelo.setText(modelo);
+           tfMarca.setText(marca);
+           tfAno.setText(ano);
+           tfPlaca.setText(placa);
+           tfProblema.setText(problema);
+       }else{
+           JOptionPane.showMessageDialog(this, "Selecione um  registro na tabela", "Erro ao selecionar", JOptionPane.ERROR_MESSAGE);
+       }
+    }//GEN-LAST:event_btEditarActionPerformed
+
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btEditar;
     private javax.swing.JButton btSair;
     private javax.swing.JButton btSalvar;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lbAno;
     private javax.swing.JLabel lbMarca;
     private javax.swing.JLabel lbModelo;
@@ -253,6 +379,7 @@ public class FrameCadastroCarro extends javax.swing.JFrame {
     private javax.swing.JLabel lbProblems;
     private javax.swing.JLabel lbSubTitulo;
     private javax.swing.JLabel lbTitulo;
+    private javax.swing.JTable tbCarro;
     private javax.swing.JTextField tfAno;
     private javax.swing.JTextField tfMarca;
     private javax.swing.JTextField tfModelo;

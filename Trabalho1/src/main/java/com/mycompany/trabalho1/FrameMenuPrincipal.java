@@ -14,6 +14,7 @@ public class FrameMenuPrincipal extends javax.swing.JFrame {
 private FramePrincipal framePrincipal;
 private FrameCadastroCliente frameCliente;
 private FrameCadastroCarro frameCarro;
+private FrameServicosRealizados frameServicos;
     /**
      * Creates new form MenuPrincipal
      */
@@ -23,6 +24,7 @@ private FrameCadastroCarro frameCarro;
         this.framePrincipal = framePrincipal;
         frameCliente = new FrameCadastroCliente(this, framePrincipal);
         frameCarro = new FrameCadastroCarro(this, framePrincipal);
+        frameServicos = new FrameServicosRealizados();
     }
     
         public void abrirFrameCadastroCliente() {
@@ -31,6 +33,10 @@ private FrameCadastroCarro frameCarro;
     }
         public void abrirFrameCadastroCarro() {
         frameCarro.setVisible(true);
+        dispose();
+    }
+        public void abrirFrameServicosRealizados() {
+        frameServicos.setVisible(true);
         dispose();
     }
         public void encerrarTudo(){
@@ -84,9 +90,19 @@ private FrameCadastroCarro frameCarro;
 
         btServicosRealizados.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         btServicosRealizados.setText("Serviços Realizados");
+        btServicosRealizados.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btServicosRealizadosActionPerformed(evt);
+            }
+        });
 
         btOrdemDeServiços.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         btOrdemDeServiços.setText("Ordem De Serviços");
+        btOrdemDeServiços.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btOrdemDeServiçosActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -147,6 +163,14 @@ private FrameCadastroCarro frameCarro;
     private void btSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSairActionPerformed
         encerrarTudo();
     }//GEN-LAST:event_btSairActionPerformed
+
+    private void btServicosRealizadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btServicosRealizadosActionPerformed
+        abrirFrameServicosRealizados();
+    }//GEN-LAST:event_btServicosRealizadosActionPerformed
+
+    private void btOrdemDeServiçosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btOrdemDeServiçosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btOrdemDeServiçosActionPerformed
 
    
 
